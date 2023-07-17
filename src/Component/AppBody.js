@@ -19,7 +19,13 @@ function AppBody() {
 // featching the data
 useEffect(()=>{
     const url=`https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${APIkey}`
-})
+
+
+axios.get(url).then((res)=>{
+setData(res.data);
+});
+
+},[location]);
 
 
     return (
