@@ -7,6 +7,7 @@ import { BsCloudHaze2Fill, BsCloudDrizzleFill, BsEye, BsWater, BsThermometer, Bs
 import { TbTemperatureCelsius } from 'react-icons/tb'
 import { ImSpinner8 } from 'react-icons/im'
 
+
 // api key
 const APIkey = '9fd16a7737223727c8c54e48c6f936c5'
 
@@ -27,6 +28,17 @@ setData(res.data);
 
 },[location]);
 
+
+// if data is false show the loader
+if(!data){
+    return(
+        <div>
+            <div>
+                <ImSpinner8 className='text-5xl animate-spin '/>
+            </div>
+        </div>
+    )
+}
 
     return (
         <React.Fragment>
