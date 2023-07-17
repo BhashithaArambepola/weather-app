@@ -16,6 +16,12 @@ function AppBody() {
     const [data, setData] = useState(null);
     const [location, setLocation] = useState('Kurunegala');
 
+// featching the data
+useEffect(()=>{
+    const url=`https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${APIkey}`
+})
+
+
     return (
         <React.Fragment>
             React
