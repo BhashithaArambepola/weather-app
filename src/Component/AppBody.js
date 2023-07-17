@@ -76,11 +76,14 @@ function AppBody() {
         bg-center flex flex-col items-center justify-center py-12 px-6'>
 
             {/* form */}
-            <form >form</form>
+            <form >
+                
+                
+            </form>
             {/* card */}
             <div className='w-full  bg-black/20 min-h-[584px] text-white backdrop-blur-[32px] rounded-[32px] py-12 px-6'>
-                <div className='bg-pink-100/30 flex items-center gap-x-5'>
-                    
+                <div className=' flex items-center gap-x-5'>
+
                     <div className='text-[87px]'>{icon}</div>
                     <div>
                         <div className='text-2xl font-semibold'>{data.name},{data.sys.country}</div>
@@ -95,11 +98,71 @@ function AppBody() {
                     <div className='flex justify-center items-center'>
                         {/* temp */}
                         <div className='text-[140px] leading-none font-light'>{parseInt(data.main.temp)}</div>
-                          {/* temp icon*/}
-                          <TbTemperatureCelsius className='text-4xl'/>
+                        <div className='text-4xl'>
+                            {/* temp icon*/}
+                            <TbTemperatureCelsius />
+                        </div>
+                    </div>
+                    {/* weather discription*/}
+                    <div className='text-center capitalize' >{data.weather[0].description}</div>
+                </div>
+
+                <div className='max-w-[378px] mx-auto flex flex-col gap-y-6'>
+                    <div className='flex justify-between '>
+                        <div className='flex items-center gap-x-2'>
+                            {/* icon */}
+                            <div className='text-[20px]'>
+                                <BsEye />
+                            </div>
+                            <div>
+                                Visibility{' '} <span className='ml-2'> {data.Visibility / 1000} km</span>
+                            </div>
+                        </div>
+                        <div className='flex items-center gap-x-2'>
+                            {/* icon */}
+                            <div className='text-[20px]'>
+                                <BsThermometer />
+                            </div>
+                            <div>
+                                <div className='flex'>
+                                    <div>Feel like <span className='ml-2'> {data.main.feels_like}</span></div>
+                                    <div className='text-0.5xl'>
+                                        {/* temp icon*/}
+
+                                    </div>
+                                    <TbTemperatureCelsius />
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div>card bottom</div>
+                <div className='max-w-[378px] mx-auto flex flex-col gap-y-6'>
+                    <div className='flex justify-between '>
+                        <div className='flex items-center gap-x-2'>
+                            {/* icon */}
+                            <div className='text-[20px]'>
+                                <BsWater />
+                            </div>
+                            <div>
+                                Humidity <span className='ml-2'> {data.main.humidity}%</span>
+                            </div>
+                        </div>
+                        <div className='flex items-center gap-x-2'>
+                            {/* icon */}
+                            <div className='text-[20px]'>
+                                <BsWind />
+                            </div>
+                            <div>
+                                <div className='flex'>
+                                    <div>Wind
+                                        <span className='ml-2'> {data.wind.speed}m/s</span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     )
