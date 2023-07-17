@@ -76,9 +76,15 @@ function AppBody() {
         bg-center flex flex-col items-center justify-center py-12 px-6'>
 
             {/* form */}
-            <form >
-                
-                
+            <form className='h-16 bg-black/30 w-full max-w-[450] rounded-full  backdrop-blur-[32px] mb-8'>
+                <div className='h-full relative flex items-center justify-between'>
+                    <input type='text' className='flex-1 bg-transparent outline-none placeholder:text-white text-[15px]
+                    font-light pl-6 h-full' placeholder='Search by city or Country' />
+                    <button className='bg-[#1ab8ed] hover:bg-[#15abdd]  w-20 h-12 rounded-full flex justify-center items-center trasnsition'>
+                        <IoMdSearch className='text-2xl text-white'/>
+                    </button>
+                </div>
+
             </form>
             {/* card */}
             <div className='w-full  bg-black/20 min-h-[584px] text-white backdrop-blur-[32px] rounded-[32px] py-12 px-6'>
