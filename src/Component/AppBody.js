@@ -126,7 +126,8 @@ function AppBody() {
 
     return (
         <div className='w-full h-screen bg-gradient-to-r from-cyan-500 to-blue-800 bg-no-repeat bg-cover bg-center flex flex-col items-center justify-center py-12 px-6'>
-            {errorMsg && <div>{`${errorMsg.response.data.message}`}</div>}
+            {errorMsg && <div className='w-full max-w-[90vw] lg:max-w-[450px] bg-gradient-to-b from-gray-900 to-gray-600 bg-gradient-to-r  text-white absolute top-2
+            lg:top-10 p-4 capitalize rounded-md'>{`${errorMsg.response.data.message}`}</div>}
             {/* form */}
             <form className={`${animate ? 'animate-shake' : 'animate-none'} h-16 bg-black/30 w-full max-w-[450px] rounded-full backdrop-blur-[32px] mb-8`}>
                 <div className='h-full relative flex items-center justify-between'>
