@@ -19,6 +19,7 @@ function AppBody() {
     const [inputValue, setInputValue] = useState('');
     const [animate, setAnimate] = useState(false);
     const [loading, setLoading] = useState(false);
+    const [errorMsg, setErrorMsg] = useState('');
 
     const handleInput = (e) => {
         setInputValue(e.target.value);
@@ -55,22 +56,36 @@ function AppBody() {
         setLoading(true);
         const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=${APIkey}`;
 
-        axios.get(url).then((res) => {
-            // set the data after 1500ms
-            setTimeout(() => {
-                setData(res.data);
-                // setLoading false
+        axios.get(url)
+            .then((res) => {
+                // set the data after 1500ms
+                setTimeout(() => {
+                    setData(res.data);
+                    // setLoading false
+                    setLoading(false);
+                }, 1500);
+            })
+            .catch(err => {
                 setLoading(false);
-            }, 1500);
-        });
+                setErrorMsg(err);
+            });
     }, [location]);
+
+
+    // error message
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setErrorMsg('');
+        }, 2000);
+        return () => clearTimeout(timer);
+    }, [errorMsg]);
 
     // if data is false show the loader
     if (!data) {
         return (
             <div>
                 <div>
-                    <ImSpinner8 className='text-5xl animate-spin ' />
+                    <ImSpinner8 className='text-5xl animate-spin' />
                 </div>
             </div>
         );
@@ -111,6 +126,7 @@ function AppBody() {
 
     return (
         <div className='w-full h-screen bg-gradient-to-r from-cyan-500 to-blue-800 bg-no-repeat bg-cover bg-center flex flex-col items-center justify-center py-12 px-6'>
+            {errorMsg && <div>{`${errorMsg.response.data.message}`}</div>}
             {/* form */}
             <form className={`${animate ? 'animate-shake' : 'animate-none'} h-16 bg-black/30 w-full max-w-[450px] rounded-full backdrop-blur-[32px] mb-8`}>
                 <div className='h-full relative flex items-center justify-between'>
@@ -132,7 +148,7 @@ function AppBody() {
             <div className='w-full max-w-[450px] bg-black/20 min-h-[584px] text-white backdrop-blur-[32px] rounded-[32px] py-12 px-6'>
                 {loading ? (
                     <div className='w-full h-full flex justify-center items-center'>
-                    <ImSpinner8 className='text-white text-5xl animate-spin'/>
+                        <ImSpinner8 className='text-white text-5xl animate-spin' />
                     </div>
                 ) : (
                     <div>
