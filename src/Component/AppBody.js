@@ -16,6 +16,25 @@ const APIkey = '9fd16a7737223727c8c54e48c6f936c5'
 function AppBody() {
     const [data, setData] = useState(null);
     const [location, setLocation] = useState('Kurunegala');
+    const [inputValue,setInputValue]=useState('');
+
+const handleInput=
+(e)=>{
+    setInputValue(e.target.value);
+}
+
+const handleSubmit=
+(e)=>{
+    console.log(inputValue);
+    // if input value is not empty
+    if(inputValue !== ''){
+        // set location
+
+        setLocation(inputValue)
+    }
+    // prevent Default
+    e.preventDefault()
+}
 
     // featching the data
     useEffect(() => {
@@ -42,7 +61,8 @@ function AppBody() {
 
     // set Icon according to the weather
     let icon;
-    console.log(data.weather[0].main);
+
+    // console.log(data.weather[0].main);
 
     switch (data.weather[0].main) {
         case 'Clouds':
@@ -78,9 +98,9 @@ function AppBody() {
             {/* form */}
             <form className='h-16 bg-black/30 w-full max-w-[450] rounded-full  backdrop-blur-[32px] mb-8'>
                 <div className='h-full relative flex items-center justify-between'>
-                    <input type='text' className='flex-1 bg-transparent outline-none placeholder:text-white text-[15px]
+                    <input onChange={(e)=>handleInput(e)} type='text' className='flex-1 bg-transparent outline-none placeholder:text-white text-[15px]
                     font-light pl-6 h-full' placeholder='Search by city or Country' />
-                    <button className='bg-[#1ab8ed] hover:bg-[#15abdd]  w-20 h-12 rounded-full flex justify-center items-center trasnsition'>
+                    <button onClick={(e)=>handleSubmit(e)} className='bg-[#1ab8ed] hover:bg-[#15abdd]  w-20 h-12 rounded-full flex justify-center items-center trasnsition'>
                         <IoMdSearch className='text-2xl text-white'/>
                     </button>
                 </div>
